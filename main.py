@@ -24,12 +24,24 @@ def select_action(current_state):
         return np.random.choice(actions_num)
     return np.argmax(Q[adjusted_state])
 
+def dealer():
+    stop = False
+    dealer_cards = 0
+    while not stop:
+        dealer_cards += np.random.randint(1, 11)
+        print("Dealer Cards:", dealer_cards)
+        if dealer_cards > 16:
+            stop = True
+    return dealer_cards
+
+
+
 
 def reward_function(current_state, action, next_state):
     if next_state > 21:
         return -1000 * abs(21 - current_state)
     elif action == 1:
-        dealer_cards = np.random.randint(16, 22)
+        dealer_cards = dealer()
         if dealer_cards > 21 or current_state > dealer_cards:
             return 1000
         elif current_state == dealer_cards:
