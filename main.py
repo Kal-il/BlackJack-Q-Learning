@@ -18,7 +18,6 @@ Q = np.zeros((states_num, actions_num))
 np.random.seed(42)
 
 def select_action(current_state):
-    # Ajuste do índice para corresponder à matriz Q
     adjusted_state = current_state - 4
     if np.random.rand() < epsilon:
         return np.random.choice(actions_num)
@@ -29,7 +28,7 @@ def dealer():
     dealer_cards = 0
     while not stop:
         dealer_cards += np.random.randint(1, 11)
-        print("Dealer Cards:", dealer_cards)
+        # print("Dealer Cards:", dealer_cards)
         if dealer_cards > 16:
             stop = True
     return dealer_cards
